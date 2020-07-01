@@ -1,0 +1,35 @@
+__: |
+  {{define 'script-name' 'deploy-on-local-containers'}}
+_description: &description
+  en: |
+    Deploy this service on the local containers.
+  ja: |
+    ローカルコンテナ上に、このサービスをデプロイします。
+  zh: |
+    在本地容器上部署此服务。
+_options: &options
+- name: help
+  short_name: h
+  is_flag: true
+  description:
+    en: |
+      Displays how to use this command.
+    ja: |
+      このコマンドの使用方法を表示します。
+    zh: |
+      显示如何使用此命令。
+- name: verbose
+  short_name: v
+  is_flag: true
+  description:
+    en: |
+      Displays more detailed command execution information.
+    ja: |
+      より詳細なコマンドの実行情報を表示します。
+    zh: |
+      显示更详细的命令执行信息。
+project:
+  scripts:
+  - name: '{{script-name}}'
+    description: *description
+    options: *options

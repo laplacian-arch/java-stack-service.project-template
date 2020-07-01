@@ -1,0 +1,23 @@
+project:
+  group: laplacian-arch
+  name: java-stack-service.project-template
+  type: template
+  namespace: laplacian.arch
+  version: '1.0.0'
+  description:
+    en: |
+      The java-stack-service.project-template project.
+    ja: |
+      The java-stack-service.project-template project.
+    zh: |
+      The java-stack-service.project-template project.
+  source_repository:
+    url: https://github.com/laplacian-arch/java-stack-service.project-template.git
+    branch: master
+  module_repositories:
+    local:
+      ../../../mvn-repo
+    remote:
+    - https://github.com/nabla-squared/mvn-repo
+  template_files:
+  - 'dest/template'
