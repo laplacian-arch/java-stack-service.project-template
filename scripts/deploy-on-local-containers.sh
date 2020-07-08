@@ -22,12 +22,8 @@ main () {
 }
 
 build_container_images() {
-  run_jooq_codegen
 }
 
-
-run_jooq_codegen() {
-}
 
 create_docker_compose_file() {
   DOCKER_COMPOSE_FILE=$PROJECT_BASE_DIR/dest/docker-compose.yaml

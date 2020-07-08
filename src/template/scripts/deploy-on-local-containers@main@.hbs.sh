@@ -16,7 +16,6 @@ build_container_images() {
     ./gradlew build
   )
   {{/each}}
-  run_jooq_codegen
   {{#each services as |service| ~}}
   (cd $PROJECT_BASE_DIR/dest/{{hyphen service.name}}
     ./gradlew build
@@ -24,37 +23,6 @@ build_container_images() {
   {{/each}}
 }
 {{/if}}
-
-run_jooq_codegen() {
-  {{#each services as |service|}}
-  {{define 'datasource' service.datasource ~}}
-  {{define 'jdbc_url' (replace datasource.jdbc_url datasource.hostname 'localhost') ~}}
-  docker rm -f {{datasource.container_name}}
-  docker \
-    run -d \
-    --rm \
-    --name {{datasource.container_name}} \
-    -p '{{printf "%1$s:%1$s" datasource.port}}' \
-    -e POSTGRES_USER={{datasource.db_user}} \
-    -e POSTGRES_PASSWORD={{datasource.db_password}} \
-    -e POSTGRES_DB={{datasource.db_name}} \
-    {{datasource.container_image}}
-
-  (cd $PROJECT_BASE_DIR/dest
-    (cd ./{{hyphen datasource.name}}-migrate
-      java  \
-        -Ddatasource.url='{{jdbc_url}}' \
-        -Ddatasource.username={{datasource.db_user}} \
-        -Ddatasource.password={{datasource.db_password}} \
-        -jar ./build/libs/db-migrate-*.jar
-    )
-    (cd {{hyphen service.name}}
-      ./gradlew generate{{upper-camel service.datasource.name}}JooqSchemaSource
-    )
-  )
-  docker stop {{datasource.container_name}}
-  {{/each}}
-}
 
 create_docker_compose_file() {
   DOCKER_COMPOSE_FILE=$PROJECT_BASE_DIR/dest/docker-compose.yaml
@@ -96,6 +64,7 @@ services:
   {{/each}}
 
   {{#each services as |service| ~}}
+  {{define 'datasource' service.datasource ~}}
   {{hyphen service.name}}:
     build:
       context: ./{{hyphen service.name}}
@@ -108,9 +77,9 @@ services:
     expose:
     - '8080'
     environment:
-    - 'DATASOURCE_URL={{service.datasource.jdbc_url}}'
-    - 'DATASOURCE_USER={{service.datasource.db_user}}'
-    - 'DATASOURCE_PASS={{service.datasource.db_password}}'
+    - 'DATASOURCE_URL=r2dbc:pool:postgresql://{{hyphen datasource.name}}:5432/{{datasource.db_name}}'
+    - 'DATASOURCE_USER={{datasource.db_user}}'
+    - 'DATASOURCE_PASS={{datasource.db_password}}'
     networks:
     - backend
   {{/each}}
