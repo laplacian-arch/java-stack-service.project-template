@@ -59,11 +59,25 @@ $ ./script/generate
 ### スクリプト一覧
 
 
-- [./script/deploy-on-local-containers.sh](<./scripts/deploy-on-local-containers.sh>)
+- [./script/deploy-on-cloud-dev.sh](<./scripts/deploy-on-cloud-dev.sh>)
+
+  このサービスをクラウド上の開発環境にデプロイします。
+
+  > Usage: deploy-on-cloud-dev.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   このコマンドの使用方法を表示します。
+  >   
+  > -v, --verbose
+  >
+  >   より詳細なコマンドの実行情報を表示します。
+  >   
+- [./script/deploy-on-local-dev.sh](<./scripts/deploy-on-local-dev.sh>)
 
   ローカルコンテナ上に、このサービスをデプロイします。
 
-  > Usage: deploy-on-local-containers.sh [OPTION]...
+  > Usage: deploy-on-local-dev.sh [OPTION]...
   >
   > -h, --help
   >
@@ -174,8 +188,15 @@ $ ./script/generate
 
 
 - [model/project.yaml](<./model/project.yaml>)
-- [src/template/model/project/scripts/deploy-on-local-containers.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-containers.hbs.yaml>)
-- [src/template/scripts/deploy-on-local-containers@main@.hbs.sh](<./src/template/scripts/deploy-on-local-containers@main@.hbs.sh>)
+- [src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml](<./src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml>)
+- [src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml>)
+- [src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh>)
+- [src/template/scripts/deploy-on-local-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-local-dev@main@.hbs.sh>)
+- [src/template/scripts/terraform/main.hbs.tf](<./src/template/scripts/terraform/main.hbs.tf>)
+- [src/template/scripts/terraform/providers.hbs.tf](<./src/template/scripts/terraform/providers.hbs.tf>)
+- [src/template/scripts/terraform/terraform.hbs.tfvars](<./src/template/scripts/terraform/terraform.hbs.tfvars>)
+- [src/template/scripts/terraform/variables.hbs.tf](<./src/template/scripts/terraform/variables.hbs.tf>)
+- [src/template/scripts/terraform/versions.hbs.tf](<./src/template/scripts/terraform/versions.hbs.tf>)
 
 
 <!-- @main-content@ -->

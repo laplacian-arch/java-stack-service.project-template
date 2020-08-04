@@ -17,33 +17,43 @@ DOCKER_COMPOSE_FILE=
 
 main () {
   create_docker_compose_file
-  build_container_images
-  run
+  build_application
+  build_container_image
+  push_container_image
+  create_terraform
+  apply_terraform
 }
-
-build_container_images() {
-}
-
 
 create_docker_compose_file() {
-  DOCKER_COMPOSE_FILE=$PROJECT_BASE_DIR/dest/docker-compose.yaml
+  DOCKER_COMPOSE_FILE=$PROJECT_BASE_DIR/dest/docker-compose-build-image.yaml
   cat <<EOF > "$DOCKER_COMPOSE_FILE"
 version: '3'
-networks:
-  frontend:
-  backend:
 
 services:
-
 EOF
 }
 
-run() {
+build_application() {
+}
+
+build_container_image() {
   docker-compose \
     --file "$DOCKER_COMPOSE_FILE" \
-    up \
-    --force-recreate \
-    --build
+    build
+}
+
+push_container_image() {
+  docker-compose \
+    --file "$DOCKER_COMPOSE_FILE" \
+    push
+}
+
+create_terraform() {
+  echo create_terraform
+}
+
+apply_terraform() {
+  echo apply_terraform
 }
 # @main@
 
@@ -74,7 +84,7 @@ parse_args() {
 
 show_usage () {
 cat << 'END'
-Usage: ./scripts/deploy-on-local-containers.sh [OPTION]...
+Usage: ./scripts/deploy-on-cloud-dev.sh [OPTION]...
   -h, --help
     Displays how to use this command.
   -v, --verbose

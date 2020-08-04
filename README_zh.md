@@ -60,11 +60,25 @@ $ ./script/generate
 ### 命令列表
 
 
-- [./script/deploy-on-local-containers.sh](<./scripts/deploy-on-local-containers.sh>)
+- [./script/deploy-on-cloud-dev.sh](<./scripts/deploy-on-cloud-dev.sh>)
+
+  将此服务部署在云端的开发环境上。
+
+  > Usage: deploy-on-cloud-dev.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   显示如何使用此命令。
+  >   
+  > -v, --verbose
+  >
+  >   显示更详细的命令执行信息。
+  >   
+- [./script/deploy-on-local-dev.sh](<./scripts/deploy-on-local-dev.sh>)
 
   在本地容器上部署此服务。
 
-  > Usage: deploy-on-local-containers.sh [OPTION]...
+  > Usage: deploy-on-local-dev.sh [OPTION]...
   >
   > -h, --help
   >
@@ -174,8 +188,15 @@ $ ./script/generate
 
 
 - [model/project.yaml](<./model/project.yaml>)
-- [src/template/model/project/scripts/deploy-on-local-containers.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-containers.hbs.yaml>)
-- [src/template/scripts/deploy-on-local-containers@main@.hbs.sh](<./src/template/scripts/deploy-on-local-containers@main@.hbs.sh>)
+- [src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml](<./src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml>)
+- [src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml>)
+- [src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh>)
+- [src/template/scripts/deploy-on-local-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-local-dev@main@.hbs.sh>)
+- [src/template/scripts/terraform/main.hbs.tf](<./src/template/scripts/terraform/main.hbs.tf>)
+- [src/template/scripts/terraform/providers.hbs.tf](<./src/template/scripts/terraform/providers.hbs.tf>)
+- [src/template/scripts/terraform/terraform.hbs.tfvars](<./src/template/scripts/terraform/terraform.hbs.tfvars>)
+- [src/template/scripts/terraform/variables.hbs.tf](<./src/template/scripts/terraform/variables.hbs.tf>)
+- [src/template/scripts/terraform/versions.hbs.tf](<./src/template/scripts/terraform/versions.hbs.tf>)
 
 
 <!-- @main-content@ -->

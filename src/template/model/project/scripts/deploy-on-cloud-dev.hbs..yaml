@@ -1,12 +1,12 @@
 __: |
-  {{define 'script-name' 'deploy-on-local-containers'}}
+  {{define 'script-name' 'deploy-on-cloud-dev'}}
 _description: &description
   en: |
-    Deploy this service on the local containers.
+    Deploy this service on the development environment in the cloud.
   ja: |
-    ローカルコンテナ上に、このサービスをデプロイします。
+    このサービスをクラウド上の開発環境にデプロイします。
   zh: |
-    在本地容器上部署此服务。
+    将此服务部署在云端的开发环境上。
 _options: &options
 - name: help
   short_name: h
