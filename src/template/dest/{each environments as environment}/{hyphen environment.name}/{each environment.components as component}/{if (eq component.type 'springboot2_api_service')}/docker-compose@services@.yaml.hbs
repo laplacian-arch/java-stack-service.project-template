@@ -1,0 +1,44 @@
+  {{#each component.datasource_mappings as |mapping| ~}}
+  {{define "datastore" mapping.component ~}}
+  {{define "datasource" mapping.datasource ~}}
+  {{define "migration_name" (concat
+    component.instance_name '-' (hyphen datasource.name) '-datasource-migrate'
+  )~}}
+  #
+  # {{component.name}}
+  #
+  {{migration_name}}:
+    build:
+      context: ./{{migration_name}}
+      dockerfile: Dockerfile
+    container_name: {{migration_name}}
+    environment:
+    - 'DATASOURCE_URL={{datastore.jdbc_connection_string}}'
+    - 'DATASOURCE_USER={{datastore.username}}'
+    - 'DATASOURCE_PASS={{datastore.password}}'
+    networks:
+    - backend
+  {{/each}}
+
+  {{component.instance_name}}:
+    build:
+      context: ./{{component.instance_name}}
+      dockerfile: Dockerfile
+    container_name: {{component.instance_name}}
+    ports:
+    - '{{printf '%1$s:%1$s' component.port}}'
+    expose:
+    - '{{component.port}}'
+    environment:
+    {{#each component.datasource_mappings as |mapping|}}
+    {{define 'datastore' mapping.component }}
+    {{define "DS_PREFIX" (concat
+      'DATASOURCE'
+      (if mapping.default '' (concat '_' (upper-snake mapping.name)))
+    )}}
+    - '{{DS_PREFIX}}_URL={{datastore.r2dbc_connection_string}}'
+    - '{{DS_PREFIX}}_USER={{datastore.username}}'
+    - '{{DS_PREFIX}}_PASS={{datastore.password}}'
+    {{/each}}
+    networks:
+    - backend

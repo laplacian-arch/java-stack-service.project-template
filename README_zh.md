@@ -60,34 +60,6 @@ $ ./script/generate
 ### 命令列表
 
 
-- [./script/deploy-on-cloud-dev.sh](<./scripts/deploy-on-cloud-dev.sh>)
-
-  将此服务部署在云端的开发环境上。
-
-  > Usage: deploy-on-cloud-dev.sh [OPTION]...
-  >
-  > -h, --help
-  >
-  >   显示如何使用此命令。
-  >   
-  > -v, --verbose
-  >
-  >   显示更详细的命令执行信息。
-  >   
-- [./script/deploy-on-local-dev.sh](<./scripts/deploy-on-local-dev.sh>)
-
-  在本地容器上部署此服务。
-
-  > Usage: deploy-on-local-dev.sh [OPTION]...
-  >
-  > -h, --help
-  >
-  >   显示如何使用此命令。
-  >   
-  > -v, --verbose
-  >
-  >   显示更详细的命令执行信息。
-  >   
 - [./script/generate.sh](<./scripts/generate.sh>)
 
   生成本项目中每个`src/` `model/` `template/`目录下的资源。
@@ -188,10 +160,12 @@ $ ./script/generate
 
 
 - [model/project.yaml](<./model/project.yaml>)
-- [src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml](<./src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml>)
-- [src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml>)
-- [src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh>)
-- [src/template/scripts/deploy-on-local-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-local-dev@main@.hbs.sh>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/docker-compose.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/docker-compose.yaml.hbs>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'postgres_test_db')}/docker-compose@services@.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'postgres_test_db')}/docker-compose@services@.yaml.hbs>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'springboot2_api_service')}/docker-compose@services@.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'springboot2_api_service')}/docker-compose@services@.yaml.hbs>)
+- [src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml](<./src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml>)
+- [src/template/scripts/deploy-on-cloud-dev@main@.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.sh>)
+- [src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh](<./src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh>)
 - [src/template/scripts/terraform/main.hbs.tf](<./src/template/scripts/terraform/main.hbs.tf>)
 - [src/template/scripts/terraform/providers.hbs.tf](<./src/template/scripts/terraform/providers.hbs.tf>)
 - [src/template/scripts/terraform/terraform.hbs.tfvars](<./src/template/scripts/terraform/terraform.hbs.tfvars>)

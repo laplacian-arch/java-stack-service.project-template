@@ -1,12 +1,13 @@
 __: |
-  {{define 'script-name' 'deploy-on-cloud-dev'}}
+  {{define 'script-name' (concat 'deploy-on-' (hyphen environment.name))}}
+
 _description: &description
   en: |
-    Deploy this service on the development environment in the cloud.
+    Deploy this service on the {{environment.name}} environment.
   ja: |
-    このサービスをクラウド上の開発環境にデプロイします。
+    {{environment.name}}環境上に、このサービスをデプロイします。
   zh: |
-    将此服务部署在云端的开发环境上。
+    在{{environment.name}}环境上部署此服务。
 _options: &options
 - name: help
   short_name: h

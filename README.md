@@ -57,34 +57,6 @@ $ ./script/generate
 ### Script List
 
 
-- [./script/deploy-on-cloud-dev.sh](<./scripts/deploy-on-cloud-dev.sh>)
-
-  Deploy this service on the development environment in the cloud.
-
-  > Usage: deploy-on-cloud-dev.sh [OPTION]...
-  >
-  > -h, --help
-  >
-  >   Displays how to use this command.
-  >   
-  > -v, --verbose
-  >
-  >   Displays more detailed command execution information.
-  >   
-- [./script/deploy-on-local-dev.sh](<./scripts/deploy-on-local-dev.sh>)
-
-  Deploy this service on the local containers.
-
-  > Usage: deploy-on-local-dev.sh [OPTION]...
-  >
-  > -h, --help
-  >
-  >   Displays how to use this command.
-  >   
-  > -v, --verbose
-  >
-  >   Displays more detailed command execution information.
-  >   
 - [./script/generate.sh](<./scripts/generate.sh>)
 
   Generates the resources in each directory of `src/` `model/` `template/` in this project.
@@ -194,10 +166,12 @@ $ ./script/generate
 
 
 - [model/project.yaml](<./model/project.yaml>)
-- [src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml](<./src/template/model/project/scripts/deploy-on-cloud-dev.hbs..yaml>)
-- [src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml](<./src/template/model/project/scripts/deploy-on-local-dev.hbs.yaml>)
-- [src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.hbs.sh>)
-- [src/template/scripts/deploy-on-local-dev@main@.hbs.sh](<./src/template/scripts/deploy-on-local-dev@main@.hbs.sh>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/docker-compose.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/docker-compose.yaml.hbs>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'postgres_test_db')}/docker-compose@services@.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'postgres_test_db')}/docker-compose@services@.yaml.hbs>)
+- [src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'springboot2_api_service')}/docker-compose@services@.yaml.hbs](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/{each environment.components as component}/{if (eq component.type 'springboot2_api_service')}/docker-compose@services@.yaml.hbs>)
+- [src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml](<./src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml>)
+- [src/template/scripts/deploy-on-cloud-dev@main@.sh](<./src/template/scripts/deploy-on-cloud-dev@main@.sh>)
+- [src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh](<./src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh>)
 - [src/template/scripts/terraform/main.hbs.tf](<./src/template/scripts/terraform/main.hbs.tf>)
 - [src/template/scripts/terraform/providers.hbs.tf](<./src/template/scripts/terraform/providers.hbs.tf>)
 - [src/template/scripts/terraform/terraform.hbs.tfvars](<./src/template/scripts/terraform/terraform.hbs.tfvars>)
