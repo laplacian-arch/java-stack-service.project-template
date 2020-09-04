@@ -1,0 +1,1 @@
+{{lower-snake component.name}}_image="gcr.io/{{project.group}}/{{hyphen component.name}}:latest"

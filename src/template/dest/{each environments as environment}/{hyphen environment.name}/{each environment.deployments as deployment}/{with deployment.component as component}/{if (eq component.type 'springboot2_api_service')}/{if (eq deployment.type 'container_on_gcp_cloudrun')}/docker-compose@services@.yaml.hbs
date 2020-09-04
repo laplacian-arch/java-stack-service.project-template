@@ -1,0 +1,22 @@
+  #
+  # {{component.name}}
+  #
+  {{component.instance_name}}:
+    build:
+      context: ./{{component.instance_name}}
+      dockerfile: Dockerfile
+    image: gcr.io/{{hyphen project.group}}/{{component.instance_name}}
+
+  {{#each component.datasource_mappings as |mapping| ~}}
+  {{define "datastore" mapping.component ~}}
+  {{define "datasource" mapping.datasource ~}}
+  {{define "migration_name" (concat
+    component.instance_name '-' (hyphen datasource.name) '-datasource-migrate'
+  )~}}
+  {{migration_name}}:
+    build:
+      context: ./{{migration_name}}
+      dockerfile: Dockerfile
+    image: gcr.io/{{hyphen project.group}}/{{migration_name}}
+  {{/each}}
+

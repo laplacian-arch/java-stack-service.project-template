@@ -1,25 +1,6 @@
-  {{#each component.datasource_mappings as |mapping| ~}}
-  {{define "datastore" mapping.component ~}}
-  {{define "datasource" mapping.datasource ~}}
-  {{define "migration_name" (concat
-    component.instance_name '-' (hyphen datasource.name) '-datasource-migrate'
-  )~}}
   #
   # {{component.name}}
   #
-  {{migration_name}}:
-    build:
-      context: ./{{migration_name}}
-      dockerfile: Dockerfile
-    container_name: {{migration_name}}
-    environment:
-    - 'DATASOURCE_URL={{datastore.jdbc_connection_string}}'
-    - 'DATASOURCE_USER={{datastore.username}}'
-    - 'DATASOURCE_PASS={{datastore.password}}'
-    networks:
-    - backend
-  {{/each}}
-
   {{component.instance_name}}:
     build:
       context: ./{{component.instance_name}}
@@ -42,3 +23,23 @@
     {{/each}}
     networks:
     - backend
+
+  {{#each component.datasource_mappings as |mapping| ~}}
+  {{define "datastore" mapping.component ~}}
+  {{define "datasource" mapping.datasource ~}}
+  {{define "migration_name" (concat
+    component.instance_name '-' (hyphen datasource.name) '-datasource-migrate'
+  )~}}
+  {{migration_name}}:
+    build:
+      context: ./{{migration_name}}
+      dockerfile: Dockerfile
+    container_name: {{migration_name}}
+    environment:
+    - 'DATASOURCE_URL={{datastore.jdbc_connection_string}}'
+    - 'DATASOURCE_USER={{datastore.username}}'
+    - 'DATASOURCE_PASS={{datastore.password}}'
+    networks:
+    - backend
+  {{/each}}
+

@@ -13,3 +13,7 @@ variable "credentials_path" {
 variable "cos_image" {
     type = string
 }
+
+# @+entries@
+# @entries@
+
