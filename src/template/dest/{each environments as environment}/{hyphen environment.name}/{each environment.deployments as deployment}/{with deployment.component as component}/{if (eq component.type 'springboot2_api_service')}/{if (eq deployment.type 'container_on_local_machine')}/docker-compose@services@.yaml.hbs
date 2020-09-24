@@ -21,6 +21,15 @@
     - '{{DS_PREFIX}}_USER={{datastore.username}}'
     - '{{DS_PREFIX}}_PASS={{datastore.password}}'
     {{/each}}
+    {{#each component.external_rest_api_mappings as |mapping|}}
+    {{define 'endpoint' mapping.external_rest_api_endpoint}}
+    - '{{upper-snake (concat 'rest_client_' mapping.name '_base_url')}}={{endpoint.base_url}}'
+    - '{{upper-snake (concat 'rest_client_' mapping.name '_api_key')}}={{endpoint.api_key}}'
+    {{/each}}
+    {{#each component.search_engine_mappings as |mapping|}}
+    {{define 'search_engine' mapping.component ~}}
+    - '{{upper-snake (concat 'search_engine_client_' mapping.name '_endpoints')}}={{search_engine.instance_name}}:{{search_engine.port}}'
+    {{/each}}
     networks:
     - backend
 
