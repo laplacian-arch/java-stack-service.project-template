@@ -13,13 +13,13 @@
     environment:
     {{#each component.datasource_mappings as |mapping|}}
     {{define 'datastore' mapping.component }}
-    {{define "DS_PREFIX" (concat
+    {{define "ENV_PREFIX" (concat
       'DATASOURCE'
       (if mapping.default '' (concat '_' (upper-snake mapping.name)))
     )}}
-    - '{{DS_PREFIX}}_URL={{datastore.r2dbc_connection_string}}'
-    - '{{DS_PREFIX}}_USER={{datastore.username}}'
-    - '{{DS_PREFIX}}_PASS={{datastore.password}}'
+    - '{{ENV_PREFIX}}_URL={{datastore.r2dbc_connection_string}}'
+    - '{{ENV_PREFIX}}_USER={{datastore.username}}'
+    - '{{ENV_PREFIX}}_PASS={{datastore.password}}'
     {{/each}}
     {{#each component.external_rest_api_mappings as |mapping|}}
     {{define 'endpoint' mapping.external_rest_api_endpoint}}
