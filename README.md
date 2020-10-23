@@ -182,6 +182,7 @@ $ ./script/generate
 - [src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/terraform.hbs.tfvars](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/terraform.hbs.tfvars>)
 - [src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/variables.hbs.tf](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/variables.hbs.tf>)
 - [src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/versions.hbs.tf](<./src/template/dest/{each environments as environment}/{hyphen environment.name}/terraform/versions.hbs.tf>)
+- [src/template/.gitignore@additional-entries@.hbs](<./src/template/.gitignore@additional-entries@.hbs>)
 - [src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml](<./src/template/model/project/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}.hbs.yaml>)
 - [src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh](<./src/template/scripts/{each environments as environment}/deploy-on-{hyphen environment.name}@main@.hbs.sh>)
 

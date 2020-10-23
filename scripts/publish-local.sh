@@ -88,8 +88,8 @@ create_build_gradle() {
   local module_dir="$1"
   cat <<EOF > $GRADLE_BUILD_FILE
 plugins {
+    id 'java'
     id 'maven-publish'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.70'
 }
 
 group = 'laplacian-arch'

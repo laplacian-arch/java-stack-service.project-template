@@ -33,7 +33,12 @@ out/
 # Laplacian projects
 .NEXT/
 .PREV/
-/dest/
+dest/*
+# @+additional-entries|dest/template/.gitignore_additional-entries_.hbs@
+
+# @additional-entries|dest/template/.gitignore_additional-entries_.hbs@
+# @+additional-entries@
+# @additional-entries@
 
 
 # GCP
