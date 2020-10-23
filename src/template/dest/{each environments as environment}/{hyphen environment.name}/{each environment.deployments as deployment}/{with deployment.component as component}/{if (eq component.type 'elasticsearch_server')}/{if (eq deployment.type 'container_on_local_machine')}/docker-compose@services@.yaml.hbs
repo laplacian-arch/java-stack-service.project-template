@@ -2,7 +2,13 @@
   # {{component.name}}
   #
   {{component.instance_name}}:
+    {{#if (not component.uses_custom_image) ~}}
     image: {{component.container_image}}
+    {{else ~}}
+    build:
+      context: ./{{component.instance_name}}
+      dockerfile: Dockerfile
+    {{/if}}
     container_name: {{component.instance_name}}
     ports:
     - '{{printf "%1$s:%1$s" component.port}}'

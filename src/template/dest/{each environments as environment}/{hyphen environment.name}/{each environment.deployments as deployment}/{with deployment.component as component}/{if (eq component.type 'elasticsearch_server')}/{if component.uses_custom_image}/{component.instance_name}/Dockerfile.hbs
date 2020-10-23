@@ -1,0 +1,10 @@
+FROM {{component.container_image}}
+
+USER root
+{{#if component.plugins ~}}
+RUN elasticsearch-plugin install {{#each component.plugins as |plugin|}}{{plugin}}{{if (not @last) ' '}}{{/each}}
+{{/if}}
+USER elasticsearch
+{{#if component.configuration_files ~}}
+COPY {{#each component.configuration_files as |file|}}./{{file.path}}{{if (not @last) ' '}}{{/each}} {{component.configuration_file_dir_path}}/
+{{/if}}
