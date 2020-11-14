@@ -1,3 +1,4 @@
+  {{define 'service' component.function_model ~}}
   #
   # {{component.name}}
   #
@@ -21,6 +22,11 @@
     - '{{ENV_PREFIX}}_USER={{datastore.username}}'
     - '{{ENV_PREFIX}}_PASS={{datastore.password}}'
     {{/each}}
+    {{#if service.depends_on_redis_cache ~}}
+    {{define 'redis_server_deployment' (first (filter environment.deployments "(eq @it.component.type 'redis_server')")) ~}}
+    - 'REDIS_HOST={{redis_server_deployment.component.instance_name}}'
+    - 'REDIS_PORT={{redis_server_deployment.component.port}}'
+    {{~/if}}
     {{#each component.external_rest_api_mappings as |mapping|}}
     {{define 'endpoint' mapping.external_rest_api_endpoint}}
     - '{{upper-snake (concat 'rest_client_' mapping.name '_base_url')}}={{endpoint.base_url}}'
