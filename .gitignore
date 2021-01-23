@@ -35,7 +35,8 @@ out/
 .PREV/
 dest/*
 # @+additional-entries|dest/template/.gitignore_additional-entries_.hbs@
-
+!/dest/environments/
+!/dest/components/
 # @additional-entries|dest/template/.gitignore_additional-entries_.hbs@
 # @+additional-entries@
 # @additional-entries@

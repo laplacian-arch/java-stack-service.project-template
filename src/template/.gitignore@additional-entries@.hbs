@@ -1,8 +1,2 @@
-{{#each environments as |environment|}}
-!/dest/{{hyphen environment.name}}/
-dest/{{hyphen environment.name}}/*
-!/dest/{{hyphen environment.name}}/docker-compose.yaml
-{{#each (filter environment.components "(eq @it.type 'springboot2_api_service')") as |component| ~}}
-!/dest/{{hyphen environment.name}}/{{hyphen component.name}}/
-{{/each}}
-{{/each}}
+!/dest/environments/
+!/dest/components/
