@@ -1,0 +1,16 @@
+  #
+  # {{deployment.name}}
+  #
+  {{deployment.instance_name}}:
+    image: {{deployment.container_image_name}}
+    container_name: {{deployment.instance_name}}
+    ports:
+    - '{{printf "%1$s:%1$s" deployment.port}}'
+    expose:
+    - '{{deployment.port}}'
+    environment:
+    - 'POSTGRES_USER={{deployment.username}}'
+    - 'POSTGRES_PASSWORD={{deployment.password}}'
+    - 'POSTGRES_DB={{deployment.database_name}}'
+    networks:
+    - backend

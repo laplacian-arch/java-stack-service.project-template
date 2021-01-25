@@ -20,6 +20,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project" },
           "group": {
             "description": "The group of this project.",
             "type": "string"
@@ -376,6 +377,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "document" },
           "title": {
             "description": "The title of this document.",
             "type": "string"
@@ -417,6 +419,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "document_language" },
           "name": {
             "description": "The name of this document_language.",
             "type": "string"
@@ -439,6 +442,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "section" },
           "name": {
             "description": "The name of this section.",
             "type": "string"
@@ -474,6 +478,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "module" },
           "name": {
             "description": "The name of this module.",
             "type": "string"
@@ -495,6 +500,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "module_repository_list" },
           "local": {
             "description": "The local of this module_repository_list.",
             "type": "string"
@@ -519,6 +525,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project" },
           "group": {
             "description": "The group of this project.",
             "type": "string"
@@ -642,6 +649,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project_type" },
           "name": {
             "description": "The name of this project_type.",
             "type": "string"
@@ -695,6 +703,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "script" },
           "name": {
             "description": "The name of this script.",
             "type": "string"
@@ -720,6 +729,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "option" },
           "name": {
             "description": "The name of this option.",
             "type": "string"
@@ -767,6 +777,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "source_repository" },
           "url": {
             "description": "The url of this source_repository.",
             "type": "string"
@@ -786,6 +797,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "localized_text" },
           "language": {
             "description": "The language of this localized_text.",
             "type": "string"
@@ -803,6 +815,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "multilingual_text" },
           "ab": {
             "description": "In Abkhazian",
             "type": "string"
@@ -1562,6 +1575,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "named_param" },
           "name": {
             "description": "The name of this named_param.",
             "type": "string"
@@ -1585,6 +1599,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "named_value" },
           "name": {
             "description": "The name of this named_value.",
             "type": "string"
@@ -1594,6 +1609,28 @@
             "type": "string"
           }
         }
+      },
+      "AnyEntity": {
+        "type": "object",
+        "allOf": [{
+        "if": { "properties": { "_class_": { "const": "section" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.document.Section" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "project" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.Project" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "project_type" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.ProjectType" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "script" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.Script" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "option" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.script.Option" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "multilingual_text" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.common.MultilingualText" }
+        }]
       }
     }
   }
