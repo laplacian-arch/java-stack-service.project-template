@@ -374,6 +374,7 @@
         "description": "An entity describing a document.",
         "type": "object",
         "required": [
+          "languages"
         ],
         "additionalProperties": false,
         "properties": {
@@ -414,6 +415,8 @@
         "description": "An entity describing a document_language.",
         "type": "object",
         "required": [
+          "name",
+          "code"
         ],
         "additionalProperties": false,
         "properties": {
@@ -436,7 +439,8 @@
         "description": "An entity describing a section.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "title"
         ],
         "additionalProperties": false,
         "properties": {
@@ -470,6 +474,9 @@
         "description": "An entity describing a module.",
         "type": "object",
         "required": [
+          "name",
+          "group",
+          "version"
         ],
         "additionalProperties": false,
         "properties": {
@@ -514,7 +521,9 @@
         "type": "object",
         "required": [
           "group",
-          "name"
+          "name",
+          "version",
+          "sources"
         ],
         "additionalProperties": false,
         "properties": {
@@ -766,6 +775,7 @@
         "description": "An entity describing a source_repository.",
         "type": "object",
         "required": [
+          "url"
         ],
         "additionalProperties": false,
         "properties": {
@@ -784,6 +794,8 @@
         "description": "An entity describing a localized_text.",
         "type": "object",
         "required": [
+          "language",
+          "content"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1560,6 +1572,8 @@
         "description": "An entity describing a named_param.",
         "type": "object",
         "required": [
+          "name",
+          "type"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1582,6 +1596,8 @@
         "description": "An entity describing a named_value.",
         "type": "object",
         "required": [
+          "name",
+          "expression"
         ],
         "additionalProperties": false,
         "properties": {

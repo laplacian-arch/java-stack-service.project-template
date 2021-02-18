@@ -374,6 +374,7 @@
         "description": "An entity describing a document.",
         "type": "object",
         "required": [
+          "languages"
         ],
         "additionalProperties": false,
         "properties": {
@@ -438,7 +439,8 @@
         "description": "An entity describing a section.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "title"
         ],
         "additionalProperties": false,
         "properties": {

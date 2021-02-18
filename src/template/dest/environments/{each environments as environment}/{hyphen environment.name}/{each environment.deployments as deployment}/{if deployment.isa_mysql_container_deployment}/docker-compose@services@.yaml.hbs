@@ -1,0 +1,18 @@
+  #
+  # {{deployment.name}}
+  #
+  {{deployment.instance_name}}:
+    image: {{deployment.container_image_name}}
+    container_name: {{deployment.instance_name}}
+    ports:
+    - '{{printf "%1$s:%1$s" deployment.port}}'
+    expose:
+    - '{{deployment.port}}'
+    environment:
+    - 'MYSQL_ALLOW_EMPTY_PASSWORD=yes'
+    - 'MYSQL_RANDOM_ROOT_PASSWORD=yes'
+    - 'MYSQL_USER={{deployment.username}}'
+    - 'MYSQL_PASSWORD={{deployment.password}}'
+    - 'MYSQL_DATABASE={{deployment.database_name}}'
+    networks:
+    - backend

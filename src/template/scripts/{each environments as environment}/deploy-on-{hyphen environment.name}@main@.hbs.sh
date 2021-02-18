@@ -28,8 +28,10 @@ build_migration_tasks() {
 deploy_containers() {
   echo "Deploying application modules..."
   (cd $DEPLOYMENT_BASE_DIR
-    docker-compose \
-      up \
+    docker-compose rm \
+      --force
+
+    docker-compose up \
       --force-recreate \
       --build
   )

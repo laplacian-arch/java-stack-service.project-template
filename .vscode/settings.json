@@ -1,6 +1,6 @@
 {
   "yaml.schemas": {
-    "./model-schema-partial.json": [
+    "./model-schema-full.json": [
       "model/**/*.yaml",
       "model/*.yaml",
       "src/*.yaml",
